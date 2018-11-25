@@ -21,6 +21,7 @@ namespace Globalque
             modelBuilder.Entity<Team>().HasIndex(t => t.Code).IsUnique();
 
             modelBuilder.Entity<Person>().OwnsOne(p => p.Pet);
+            modelBuilder.Entity<Person>().HasQueryFilter(p => !p.IsArchived);
 
             modelBuilder.Entity<TeamUser>().HasKey(tu => new { tu.TeamId, tu.UserName });
             modelBuilder.Entity<TeamUser>().HasOne<Team>().WithMany().HasForeignKey(tu => tu.TeamId);

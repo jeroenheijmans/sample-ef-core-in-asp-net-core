@@ -22,6 +22,8 @@
         public int Id { get; set; }
         public string Name { get; set; }
         public Pet Pet { get; set; }
+
+        public bool IsArchived { get; set; }
     }
 
     public class Pet
