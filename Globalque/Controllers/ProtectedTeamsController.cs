@@ -8,8 +8,8 @@ namespace Globalque.Controllers
         // Just reuse another controller, and expose the endpoints in a
         // controller requiring Authorization.
 
-        public ProtectedTeamsController(PeopleDbContext db)
-            : base(db)
+        public ProtectedTeamsController(MetaDbContext teamUserDb, PeopleDbContext db)
+            : base(teamUserDb, db)
         { }
     }
 }

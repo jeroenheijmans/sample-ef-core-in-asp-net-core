@@ -1,17 +1,32 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
+using System.Linq;
+using System.Security.Claims;
 
 namespace Globalque
 {
     public class PeopleDbContext : DbContext
     {
-        public PeopleDbContext(DbContextOptions<PeopleDbContext> options)
+        private readonly int[] filterOnOnlyTheseTeamIds = new int[0];
+        private readonly bool isAuthenticated;
+
+        public PeopleDbContext(DbContextOptions<PeopleDbContext> options, MetaDbContext teamDb, ClaimsPrincipal user)
             : base (options)
-        { }
+        {
+            var userNameClaim = user?.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
+
+            if (userNameClaim != null)
+            {
+                filterOnOnlyTheseTeamIds = teamDb.TeamUsers
+                    .Where(tu => tu.UserName == userNameClaim.Value)
+                    .Select(tu => tu.TeamId)
+                    .ToArray();
+            }
+
+            isAuthenticated = user?.Identity?.IsAuthenticated ?? false;
+        }
 
         public DbSet<Person> People { get; set; }
         public DbSet<Team> Teams { get; set; }
-        public DbSet<TeamUser> TeamUsers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -23,8 +38,8 @@ namespace Globalque
             modelBuilder.Entity<Person>().OwnsOne(p => p.Pet);
             modelBuilder.Entity<Person>().HasQueryFilter(p => !p.IsArchived);
 
-            modelBuilder.Entity<TeamUser>().HasKey(tu => new { tu.TeamId, tu.UserName });
-            modelBuilder.Entity<TeamUser>().HasOne<Team>().WithMany().HasForeignKey(tu => tu.TeamId);
+            // Bit weird to show unauthenticated users everything, but for easier testing...
+            modelBuilder.Entity<Person>().HasQueryFilter(p => !isAuthenticated || filterOnOnlyTheseTeamIds.Contains(p.Team.Id));
         }
 
         public static void Seed(PeopleDbContext db)

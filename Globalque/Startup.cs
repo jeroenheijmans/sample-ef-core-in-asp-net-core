@@ -1,12 +1,14 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
+using System.Security.Claims;
 
 namespace Globalque
 {
@@ -26,6 +28,7 @@ namespace Globalque
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             var connectionString = Configuration.GetConnectionString("GlobalqueDatabase");
+            services.AddDbContext<MetaDbContext>(options => options.UseSqlServer(connectionString));
             services.AddDbContext<PeopleDbContext>(options => options.UseSqlServer(connectionString));
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -34,6 +37,10 @@ namespace Globalque
                     opts.Authority = "https://demo.identityserver.io";
                     opts.Audience = "api";
                 });
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddScoped<ClaimsPrincipal>(s => s.GetService<IHttpContextAccessor>()?.HttpContext?.User);
 
             services.AddSwaggerGen(c =>
             {

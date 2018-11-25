@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Globalque.Controllers
 {
@@ -19,14 +20,14 @@ namespace Globalque.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Person>> Get()
         {
-            var people = db.Set<Person>().OrderBy(p => p.Id).Take(10).ToList();
+            var people = db.Set<Person>().Include(p => p.Team).OrderBy(p => p.Id).Take(10).ToList();
             return Ok(people);
         }
 
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
-            var person = db.Set<Person>().Find(id);
+            var person = db.Set<Person>().Include(p => p.Team).FirstOrDefault(p => p.Id == id);
 
             if (person == null)
             {
