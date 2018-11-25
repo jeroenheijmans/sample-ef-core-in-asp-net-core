@@ -80,5 +80,22 @@ namespace Globalque.Controllers
 
             return NoContent();
         }
+
+        [HttpPost("{id}/do-rpc-thing")]
+        public IActionResult DoRpcThing(int id)
+        {
+            var person = db.Set<Person>().Find(id);
+
+            if (person == null)
+            {
+                return NotFound();
+            }
+
+            person.Name = "Name changed at UTC " + DateTime.UtcNow.ToString();
+            db.Set<Person>().Update(person);
+            db.SaveChanges();
+
+            return Ok();
+        }
     }
 }
