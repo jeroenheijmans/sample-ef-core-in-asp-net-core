@@ -9,6 +9,10 @@
     <Compile Remove="Migrations\20181120214146_InitializeDatabase.Designer.cs" />
     <Compile Remove="Migrations\20181120214512_Initial.cs" />
     <Compile Remove="Migrations\20181120214512_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20181125160242_LinkPersonAndTeam.cs" />
+    <Compile Remove="Migrations\20181125160242_LinkPersonAndTeam.Designer.cs" />
+    <Compile Remove="Migrations\20181125160427_LinkPersonAndTeam.cs" />
+    <Compile Remove="Migrations\20181125160427_LinkPersonAndTeam.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

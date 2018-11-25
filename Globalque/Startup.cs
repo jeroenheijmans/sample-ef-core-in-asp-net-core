@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
+using System;
 
 namespace Globalque
 {
@@ -40,7 +41,7 @@ namespace Globalque
             });
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider services)
         {
             app.UseSwagger();
             app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", ApiName); c.RoutePrefix = ""; });
@@ -50,6 +51,10 @@ namespace Globalque
             app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseMvc();
+
+            var db = services.GetService<PeopleDbContext>();
+            db.Database.Migrate();
+            PeopleDbContext.Seed(db);
         }
     }
 }
