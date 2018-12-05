@@ -4,7 +4,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace Globalque.Controllers
+namespace SampleAspNetWithEfCore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

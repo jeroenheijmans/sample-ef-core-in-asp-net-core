@@ -10,11 +10,11 @@ using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.Security.Claims;
 
-namespace Globalque
+namespace SampleAspNetWithEfCore
 {
     public class Startup
     {
-        private const string ApiName = "Globalque";
+        private const string ApiName = "SampleAspNetWithEfCore";
 
         public Startup(IConfiguration configuration)
         {
@@ -27,7 +27,7 @@ namespace Globalque
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            var connectionString = Configuration.GetConnectionString("GlobalqueDatabase");
+            var connectionString = Configuration.GetConnectionString("SampleAspNetWithEfCoreDatabase");
             services.AddDbContext<MetaDbContext>(options => options.UseSqlServer(connectionString));
             services.AddDbContext<PeopleDbContext>(options => options.UseSqlServer(connectionString));
 

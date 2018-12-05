@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 
-namespace Globalque.Controllers
+namespace SampleAspNetWithEfCore.Controllers
 {
     [Authorize]
     public class ProtectedPeopleController : PeopleController

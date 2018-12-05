@@ -1,4 +1,4 @@
-﻿namespace Globalque
+﻿namespace SampleAspNetWithEfCore
 {
     public class Team
     {

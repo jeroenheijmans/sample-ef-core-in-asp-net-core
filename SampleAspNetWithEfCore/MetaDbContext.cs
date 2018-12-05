@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Globalque
+namespace SampleAspNetWithEfCore
 {
     public class MetaDbContext : DbContext
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Globalque
+namespace SampleAspNetWithEfCore
 {
     public class PingDto
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Globalque.Migrations
+namespace SampleAspNetWithEfCore.Migrations
 {
     public partial class Initialize : Migration
     {

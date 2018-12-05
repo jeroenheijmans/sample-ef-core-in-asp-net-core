@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Globalque.Migrations
+namespace SampleAspNetWithEfCore.Migrations
 {
     public partial class Person_IsArchived : Migration
     {

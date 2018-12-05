@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Security.Claims;
 
-namespace Globalque
+namespace SampleAspNetWithEfCore
 {
     public class PeopleDbContext : DbContext
     {

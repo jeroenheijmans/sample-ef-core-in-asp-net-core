@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Globalque.Controllers
+namespace SampleAspNetWithEfCore.Controllers
 {
     [ApiController]
     public class SystemController : ControllerBase
