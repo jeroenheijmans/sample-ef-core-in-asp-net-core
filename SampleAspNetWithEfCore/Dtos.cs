@@ -4,7 +4,15 @@ namespace SampleAspNetWithEfCore
 {
     public class PingDto
     {
-        public DateTime UtcNow => DateTime.UtcNow;
-        public string Message => "Server is alive!";
+        public PingDto(bool useUtc, string messageSuffix)
+        {
+            IsUtc = useUtc;
+            Now = useUtc ? DateTime.UtcNow : DateTime.Now;
+            Message = "Server is alive!" + messageSuffix;
+        }
+
+        public bool IsUtc { get; set; }
+        public DateTime Now { get; }
+        public string Message { get; }
     }
 }

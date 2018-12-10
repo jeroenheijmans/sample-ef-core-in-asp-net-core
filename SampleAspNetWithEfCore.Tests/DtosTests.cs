@@ -12,7 +12,7 @@ namespace SampleAspNetWithEfCore.Tests
         [Fact]
         public void PingDto_can_be_serialized()
         {
-            var original = new PingDto();
+            var original = new PingDto(useUtc: true, messageSuffix: " test");
             var json = JsonConvert.SerializeObject(original);
 
             Assert.Contains(original.Message, json);

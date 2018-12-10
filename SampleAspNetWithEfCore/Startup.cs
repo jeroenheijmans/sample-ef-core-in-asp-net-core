@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.Security.Claims;
+using Microsoft.Extensions.Options;
 
 namespace SampleAspNetWithEfCore
 {
@@ -40,6 +41,8 @@ namespace SampleAspNetWithEfCore
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
+            services.AddOptions<SystemOptions>(Configuration.GetSection("System"));
+
             services.AddScoped<ClaimsPrincipal>(s => s.GetService<IHttpContextAccessor>()?.HttpContext?.User);
 
             services.AddSwaggerGen(c =>
@@ -62,6 +65,18 @@ namespace SampleAspNetWithEfCore
             var db = services.GetService<PeopleDbContext>();
             db.Database.Migrate();
             PeopleDbContext.Seed(db);
+        }
+    }
+
+    public static class ServicesExtensions
+    {
+        public static T AddOptions<T>(this IServiceCollection services, IConfigurationSection section)
+            where T : class, new()
+        {
+            services.Configure<T>(section);
+            services.AddSingleton(provider => provider.GetRequiredService<IOptions<T>>().Value);
+
+            return section.Get<T>();
         }
     }
 }
