@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using SampleAspNetWithEfCore.Dtos;
 using Xunit;
 
-namespace SampleAspNetWithEfCore.Tests
+namespace SampleAspNetWithEfCore.Tests.Dtos
 {
     public class DtosTests
     {

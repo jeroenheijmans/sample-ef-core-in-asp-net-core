@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SampleAspNetWithEfCore.Entities;
 using System.Linq;
 using System.Security.Claims;
 
-namespace SampleAspNetWithEfCore
+namespace SampleAspNetWithEfCore.DataAccess
 {
     public class PeopleDbContext : DbContext
     {

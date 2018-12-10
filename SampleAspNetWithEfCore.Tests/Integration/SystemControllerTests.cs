@@ -1,17 +1,13 @@
 ﻿using System.Threading.Tasks;
 using Xunit;
 
-namespace SampleAspNetWithEfCore.Tests
+namespace SampleAspNetWithEfCore.Tests.Integration
 {
-    public class IntegrationTests
-        : IClassFixture<CustomWebApplicationFactory>
+    public class SystemControllerTests : IntegrationTests
     {
-        private readonly CustomWebApplicationFactory _factory;
-
-        public IntegrationTests(CustomWebApplicationFactory factory)
-        {
-            _factory = factory;
-        }
+        public SystemControllerTests(CustomWebApplicationFactory factory) 
+            : base(factory)
+        { }
 
         [Fact]
         public async Task System_Ping_Returns_Dto()

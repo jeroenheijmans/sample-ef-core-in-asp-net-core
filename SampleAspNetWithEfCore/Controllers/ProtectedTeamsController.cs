@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using SampleAspNetWithEfCore.DataAccess;
 
 namespace SampleAspNetWithEfCore.Controllers
 {

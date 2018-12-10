@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SampleAspNetWithEfCore
+namespace SampleAspNetWithEfCore.Dtos
 {
     public class PingDto
     {

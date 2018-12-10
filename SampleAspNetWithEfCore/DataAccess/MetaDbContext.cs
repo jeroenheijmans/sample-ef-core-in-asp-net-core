@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SampleAspNetWithEfCore.Entities;
 
-namespace SampleAspNetWithEfCore
+namespace SampleAspNetWithEfCore.DataAccess
 {
     public class MetaDbContext : DbContext
     {
