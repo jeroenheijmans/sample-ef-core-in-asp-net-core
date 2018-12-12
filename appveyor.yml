@@ -4,10 +4,14 @@ skip_branch_with_pr: false
 
 # See: https://www.appveyor.com/docs/build-configuration/
 
+environment:
+  System__PingMessageSuffix: $(APPVEYOR_JOB_ID)
+
 # 1. INIT
 init:
   - cmd: git config --global core.autocrlf true
   - cmd: dotnet --version # --info is more verbose but also helpful
+  - ps: gci env:* | sort-object name
 
 # 2. AppVeyor does a git clone and cd into the folder
 # 3. AppVeyor restores build cache
