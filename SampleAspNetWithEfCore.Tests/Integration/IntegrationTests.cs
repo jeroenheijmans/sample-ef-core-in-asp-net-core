@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using System.Net.Http;
+using Xunit;
 
 namespace SampleAspNetWithEfCore.Tests.Integration
 {
@@ -7,11 +8,11 @@ namespace SampleAspNetWithEfCore.Tests.Integration
     public abstract class IntegrationTests
         : IClassFixture<ApiIntegrationTestsFixture>
     {
-        protected readonly ApiIntegrationTestsFixture _factory;
+        protected HttpClient Client { get; }
 
-        protected IntegrationTests(ApiIntegrationTestsFixture factory)
+        protected IntegrationTests(ApiIntegrationTestsFixture fixture)
         {
-            _factory = factory;
+            Client = fixture.CreateClient();
         }
     }
 }
