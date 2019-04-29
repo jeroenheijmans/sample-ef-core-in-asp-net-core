@@ -20,6 +20,18 @@ namespace SampleAspNetWithEfCore.Tests.Integration
         }
 
         [Fact]
+        public async Task Get_returns_zero_results_by_default()
+        {
+            var client = _factory.CreateClient();
+            var response = await client.GetAsync("/api/people");
+            response.EnsureSuccessStatusCode();
+
+            var result = await response.DeserializeContentAs<Person[]>();
+
+            Assert.Empty(result);
+        }
+
+        [Fact]
         public async Task Post_returns_created_item()
         {
             var client = _factory.CreateClient();
