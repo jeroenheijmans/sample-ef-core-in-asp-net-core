@@ -3,12 +3,13 @@
 namespace SampleAspNetWithEfCore.Tests.Integration
 {
     [Trait("Category", "Integration")]
+    [Collection(ApiIntegrationTestsCollection.Name)]
     public abstract class IntegrationTests
-        : IClassFixture<CustomWebApplicationFactory>
+        : IClassFixture<ApiIntegrationTestsFixture>
     {
-        protected readonly CustomWebApplicationFactory _factory;
+        protected readonly ApiIntegrationTestsFixture _factory;
 
-        protected IntegrationTests(CustomWebApplicationFactory factory)
+        protected IntegrationTests(ApiIntegrationTestsFixture factory)
         {
             _factory = factory;
         }

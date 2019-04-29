@@ -5,7 +5,7 @@ namespace SampleAspNetWithEfCore.Tests.Integration
 {
     public class SystemControllerTests : IntegrationTests
     {
-        public SystemControllerTests(CustomWebApplicationFactory factory) 
+        public SystemControllerTests(ApiIntegrationTestsFixture factory) 
             : base(factory)
         { }
 

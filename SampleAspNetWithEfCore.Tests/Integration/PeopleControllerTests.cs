@@ -7,7 +7,7 @@ namespace SampleAspNetWithEfCore.Tests.Integration
 {
     public class PeopleControllerTests : IntegrationTests
     {
-        public PeopleControllerTests(CustomWebApplicationFactory factory) 
+        public PeopleControllerTests(ApiIntegrationTestsFixture factory) 
             : base(factory)
         { }
 

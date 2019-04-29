@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace SampleAspNetWithEfCore.Tests
 {
-    public class CustomWebApplicationFactory : WebApplicationFactory<Startup>
+    public class ApiIntegrationTestsFixture : WebApplicationFactory<Startup>
     {
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
