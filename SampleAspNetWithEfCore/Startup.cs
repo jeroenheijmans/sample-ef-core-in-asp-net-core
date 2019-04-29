@@ -58,10 +58,12 @@ namespace SampleAspNetWithEfCore
 
             app.UseDeveloperExceptionPage();
 
+            app.UseCors(b => b.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+
             app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseMvc();
-
+            
             var db = services.GetService<PeopleDbContext>();
             db.Database.Migrate();
             PeopleDbContext.Seed(db);
